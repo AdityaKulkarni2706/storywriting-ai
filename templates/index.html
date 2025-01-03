@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Writing Helper</title>
+
+    <style>
+        body {
+            font-family: 'JetBrains Mono NL SemiBold', sans-serif;
+            background-color: #1a1a1a; /* Dark background */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: auto;
+        }
+    
+        #container {
+            width: 90%;
+            max-width: 600px;
+            background: #333; /* Dark container background */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+            max-height: 90vh;
+            color: #fff; /* White text for readability */
+        }
+    
+        h2 {
+            font-family: 'JetBrains Mono NL SemiBold', sans-serif;
+            font-size: 1.5em;
+            color: #ffa500; /* Orange text */
+            margin-bottom: 15px;
+        }
+    
+        input[type="text"] {
+            font-family: 'JetBrains Mono NL SemiBold', sans-serif;
+            width: calc(100% - 20px);
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ffa500; /* Orange border */
+            border-radius: 5px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            background-color: #222; /* Dark background for input */
+            color: #fff; /* White text inside input */
+        }
+    
+        button {
+            font-family: 'JetBrains Mono NL SemiBold', sans-serif;
+            background-color: #ffa500; /* Orange button */
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+    
+        button:hover {
+            background-color: #e67e00; /* Darker orange on hover */
+        }
+    
+        #user-offer-div, #waiting-text {
+            display: none;
+        }
+    
+        #waiting-text {
+            font-family: 'JetBrains Mono NL SemiBold', sans-serif;
+            text-align: center;
+            font-size: 1.2em;
+            color: #ddd; /* Light gray color for the waiting text */
+            margin-top: 20px;
+        }
+    
+        span {
+            display: block;
+            margin: 10px 0;
+            font-size: 1em;
+            color: #ccc; /* Light gray for general text */
+        }
+    </style>
+    
+    
+
+</head>
+<body>
+    <div id="container">
+        <div id="let-user-spill">
+            <h2>Spill whatever is in your mind!</h2>
+            <input type="text" id="user-input" placeholder="Enter your answer here">
+            <button id="submit-button" onclick="buttonErrorHandling(event)">Submit</button>
+        </div>
+        <br>
+
+        <span id="error-msg">
+
+        </span>
+
+        <br>
+
+        <div id="random-genre">
+            <button id="random-genre-btn" onclick="displayWaitingMessage()">Surprise me!</button>
+
+        </div>
+
+        
+
+        <div id="waiting-text">
+            <h2>Generating response, please wait...</h2>
+        </div>
+
+        <span id="core-text"></span>
+        <span id="character-text"></span>
+        <span id="setting-text"></span>
+        <span id="plot-text"></span>
+    </div>
+
+    <script>
+        
+        function displayWaitingMessage() {
+            const waitingText = document.getElementById('waiting-text');
+            waitingText.style.display = 'block';
+        }
+
+        function hideSubmitInitial(){
+            const submitButton = document.getElementById('submit-button');
+            submitButton.style.display = 'none';
+        }
+        
+        function hideSurpriseMe(){
+            const randomGenre = document.getElementById('random-genre');
+            randomGenre.style.display = 'none';
+        }
+
+        function buttonErrorHandling(event){
+
+            const input = document.getElementById('user-input').value;
+            if(input.trim() === ''){
+                const errorMsg = document.getElementById('error-msg');
+                errorMsg.innerHTML = 'Perhaps forgot to enter your answer? If confused, click on "Surprise me!"';
+                event.preventDefault();
+            }
+            else{
+                displayWaitingMessage();
+            }
+
+        }
+
+    </script>
+
+    <script src="/static/connector.js"></script>
+</body>
+</html>
