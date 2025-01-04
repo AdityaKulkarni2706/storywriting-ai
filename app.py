@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, jsonify
 import google.generativeai as genai
 import code_library.functions as functions
-
+from flask_cors import CORS
 
 #API KEY : AIzaSyDju66-JtD42JqKy6Af5jxJGNGU5kBdNlI
 
@@ -11,6 +11,7 @@ import code_library.functions as functions
 
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/')
 def index():
