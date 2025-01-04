@@ -12,24 +12,33 @@ async function PythonPipeline(){
     const user_input_json = JSON.stringify(payload);
 
 
-    const response = await fetch('http://127.0.0.1:5000/generate_lit', {
-        method: 'POST',
-        body: user_input_json,
-        headers: {
-            'Content-Type': 'application/json'
+    try {
+        const response = await fetch('http://192.168.18.9:5000/generate_lit', {
+            method: 'POST',
+            body: user_input_json,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+    
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
         }
-    })
-
-    const data = await response.json();
-    document.getElementById('core-text').innerHTML = data.core;
-    document.getElementById('character-text').innerHTML = data.character;
-    document.getElementById('setting-text').innerHTML = data.setting;
-    document.getElementById('plot-text').innerHTML = data.plot;
-
-    document.getElementById('waiting-text').style.display = 'none';
-
-    console.log(data);
-
+    
+        const data = await response.json();
+        document.getElementById('core-text').innerHTML = data.core;
+        document.getElementById('character-text').innerHTML = data.character;
+        document.getElementById('setting-text').innerHTML = data.setting;
+        document.getElementById('plot-text').innerHTML = data.plot;
+    
+        document.getElementById('waiting-text').style.display = 'none';
+        console.log(data);
+    
+    } catch (error) {
+        console.error('Fetch error:', error);
+        
+    }
+    
 
 
 
