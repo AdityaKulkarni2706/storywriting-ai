@@ -11,7 +11,7 @@ from flask_cors import CORS
 
 
 app = Flask(__name__)
-CORS(app,origins=["https://storywriting-ai.onrender.com"])
+CORS(app, resources={r"/*": {"origins": "*"}}, allow_headers=["Content-Type", "Authorization", "Access-Control-Allow-Headers"])
 
 @app.route('/')
 def index():
@@ -38,5 +38,5 @@ def generate_lit():
 
 
 if __name__ == '__main__':
-    app.run(host = '0.0.0.0',port = 5000, debug=True, ssl_context=('certificate.pem', 'private.key'))
+    app.run(host = '0.0.0.0',port = 5000, debug=True)
 
