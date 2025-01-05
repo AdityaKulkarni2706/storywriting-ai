@@ -13,7 +13,7 @@ async function PythonPipeline(){
 
 
     try {
-        const response = await fetch('http://192.168.18.9:5000/generate_lit', {
+        const response = await fetch('https://storywriting-ai.onrender.com/generate_lit', {
             method: 'POST',
             body: user_input_json,
             headers: {
